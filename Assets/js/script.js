@@ -3,7 +3,13 @@ var userCityName;
 var userStateCode;
 var userCountry;
 
-fetch ('http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}')
+fetch ('http://api.openweathermap.org/geo/1.0/direct?q=Toronto&limit=5&appid=${APIKey}')
+.then(function (response) {
+  return response.json();
+})
+.then(function(data) {
+  console.log(data)
+});
 
 fetch('https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclude={part}&appid='+ APIKey)
   .then(function (response) {
@@ -13,6 +19,7 @@ fetch('https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclu
     console.log(data);
   });
 
+// Autocomplete cities
   $( function() {
     var availableTags = [
       "Toronto",
@@ -23,3 +30,8 @@ fetch('https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclu
       source: availableTags
     });
   } );
+
+  // 
+$('button[type="submit"]').click(function (){
+
+})
