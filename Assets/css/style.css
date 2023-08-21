@@ -1,0 +1,16 @@
+:root {
+    --kuromi: #d0c6e9;
+    --pompompurin: #f4efab;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+header {
+    text-align: center;
+    background-color: var(--kuromi);
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
