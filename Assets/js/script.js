@@ -12,12 +12,22 @@ var todaysWeatherIconEl = $('#todaysWeatherIcon')
 var arrayStorage = [];
 
 // get local storage and display as buttons
-window.addEventListener('load', function () {
-  var searchHistory = JSON.parse(localStorage.getItem('filteredCities')) || [];
-  searchHistory.forEach(function(cityName) {
 
-  }
-  });
+$(document).ready(function () {
+  var searchHistory = JSON.parse(localStorage.getItem('filteredCities')) || [];
+  searchHistory.forEach(function (cityName) {
+    var cityButton = $('<button>');
+    cityButton.text(cityName);
+    cityButton.attr('type', 'button');
+    cityButton.addClass('list-group-item list-group-item-action')
+    $('.searchHistory').append(cityButton);
+  })
+})
+
+
+$('.searchHistory').on('click', 'button', function () {
+  findCity($(this).text());
+})
 
 $('button[type="submit"]').click(function (event) {
   event.preventDefault();
@@ -40,11 +50,12 @@ function findCity(userCityName) {
       } else {
 
         //store search history
-        
+
         var chosenCity = data[0].name
         arrayStorage.push(chosenCity);
         var filteredCities = [...new Set(arrayStorage)]
         localStorage.setItem('filteredCities', JSON.stringify(filteredCities));
+        // getSearchHistory()
 
 
         console.log('array storage --> ', arrayStorage);
