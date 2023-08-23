@@ -10,7 +10,7 @@ var fourDayAfter = (dayjs().add(4, 'day')).format('YYYY-MM-DD');
 var fiveDayAfter = (dayjs().add(5, 'day')).format('YYYY-MM-DD');
 var todaysWeatherIconEl = $('#todaysWeatherIcon')
 var arrayStorage = JSON.parse(localStorage.getItem('filteredCities')) || [];
-
+var weatherDisplayEl = $('.weatherDisplay');
 
 // get local storage and display as buttons when document loads
 
@@ -32,6 +32,7 @@ var updateHistory = function() {
 
 $('.searchHistory').on('click', 'button', function () {
   findCity($(this).text());
+  weatherDisplayEl.removeClass('hidden');
 })
 
 $('button[type="submit"]').click(function (event) {
@@ -62,10 +63,7 @@ function findCity(userCityName) {
         localStorage.setItem('filteredCities', JSON.stringify(filteredCities));
         updateHistory()
 
-
-
-        console.log('array storage --> ', arrayStorage);
-        console.log('filtered cities --> ', filteredCities)
+        weatherDisplayEl.removeClass('hidden');
 
         $('#cityName').text(chosenCity + " (" + todaysDate + ")");
         console.log(data);
