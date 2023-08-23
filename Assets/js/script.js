@@ -9,18 +9,20 @@ var threeDayAfter = (dayjs().add(3, 'day')).format('YYYY-MM-DD');
 var fourDayAfter = (dayjs().add(4, 'day')).format('YYYY-MM-DD');
 var fiveDayAfter = (dayjs().add(5, 'day')).format('YYYY-MM-DD');
 var todaysWeatherIconEl = $('#todaysWeatherIcon')
-var arrayStorage = [];
+var arrayStorage = JSON.parse(localStorage.getItem('filteredCities')) || [];
+
 
 // get local storage and display as buttons
 
 $(document).ready(function () {
+  $('.searchHistory').empty();
   var searchHistory = JSON.parse(localStorage.getItem('filteredCities')) || [];
   searchHistory.forEach(function (cityName) {
     var cityButton = $('<button>');
     cityButton.text(cityName);
     cityButton.attr('type', 'button');
     cityButton.addClass('list-group-item list-group-item-action')
-    $('.searchHistory').append(cityButton);
+    $('.searchHistory').prepend(cityButton);
   })
 })
 
@@ -55,6 +57,8 @@ function findCity(userCityName) {
         arrayStorage.push(chosenCity);
         var filteredCities = [...new Set(arrayStorage)]
         localStorage.setItem('filteredCities', JSON.stringify(filteredCities));
+
+
         // getSearchHistory()
 
 
