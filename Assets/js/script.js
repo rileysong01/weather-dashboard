@@ -12,12 +12,11 @@ var todaysWeatherIconEl = $('#todaysWeatherIcon')
 var arrayStorage = JSON.parse(localStorage.getItem('filteredCities')) || [];
 
 
-// get local storage and display as buttons
+// get local storage and display as buttons when document loads
 
 $(document).ready(function () {
   updateHistory();
 })
-
 var updateHistory = function() {
   $('.searchHistory').empty();
   var searchHistory = JSON.parse(localStorage.getItem('filteredCities')) || [];
@@ -52,7 +51,7 @@ function findCity(userCityName) {
       console.log(data)
       $('#tags').val('');
       if (data.length < 1) {
-        alert('Please enter a city')
+        alert('Please enter a valid city!')
       } else {
 
         //store search history

@@ -17,3 +17,9 @@ header {
 .hidden {
     display: none;
 }
+
+.searchHistoryContainer {
+    border: 5px solid var(--kuromi);
+    padding: 10px;
+    border-radius: 5%;
+}
