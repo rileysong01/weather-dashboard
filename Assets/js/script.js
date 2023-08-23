@@ -15,6 +15,10 @@ var arrayStorage = JSON.parse(localStorage.getItem('filteredCities')) || [];
 // get local storage and display as buttons
 
 $(document).ready(function () {
+  updateHistory();
+})
+
+var updateHistory = function() {
   $('.searchHistory').empty();
   var searchHistory = JSON.parse(localStorage.getItem('filteredCities')) || [];
   searchHistory.forEach(function (cityName) {
@@ -24,7 +28,7 @@ $(document).ready(function () {
     cityButton.addClass('list-group-item list-group-item-action')
     $('.searchHistory').prepend(cityButton);
   })
-})
+}
 
 
 $('.searchHistory').on('click', 'button', function () {
@@ -57,9 +61,8 @@ function findCity(userCityName) {
         arrayStorage.push(chosenCity);
         var filteredCities = [...new Set(arrayStorage)]
         localStorage.setItem('filteredCities', JSON.stringify(filteredCities));
+        updateHistory()
 
-
-        // getSearchHistory()
 
 
         console.log('array storage --> ', arrayStorage);
